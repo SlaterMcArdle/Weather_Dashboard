@@ -1,0 +1,22 @@
+header {
+    background: linear-gradient(90deg, rgba(0,116,236,1) 0%, rgba(10,10,157,1) 51%, rgba(9,9,121,1) 100%);
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+.futureWeatherCard {
+    display: inline-block;
+    background-color: darkblue;
+    color: white;
+    padding: 0.2em;
+}
+.uvSpan {
+    color: white;
+    background-color: green;
+    padding: 0em 1em;
+    border-radius: 0.2em;
+}
+#currentWeather {
+    border: 1px black solid;
+    padding: 0.2em;
+}
