@@ -68,6 +68,7 @@ function getRecentSearches() {
     }
 
 }
+// Update the local storage with the most recent search value array
 function setRecentSearches(city) {
     // If the localStorage city list is empty, create a new array
     if (storedWeatherSearches == null) {
