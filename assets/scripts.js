@@ -87,7 +87,6 @@ function setRecentSearches(city) {
     // save the array in local storage
     localStorage.setItem('recentWeatherSearches', JSON.stringify(storedWeatherSearches));
 }
-
 // Get the stored searches on page load
 getRecentSearches();
 
