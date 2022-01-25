@@ -38,7 +38,7 @@ function parseWeather(weatherData, city) {
     // Populate the current day's weather elements with the data
     $('#city-date').text(city + ' ' + (new Date(weatherData.current.dt*1000)).toLocaleDateString("en-US"));
     $('#currentDayIcon').attr('src', 'http://openweathermap.org/img/w/' + weatherData.current.weather[0].icon + '.png').removeClass('d-none').addClass('d-inline');
-    $('#currentTemp').text('Temp: ' + convertTempToFahrenheit(weatherData.current.temp));
+    $('#currentTemp').text('Temp: ' + convertTempToFahrenheit(weatherData.current.temp) + String.fromCharCode(176) + 'F');
     $('#currentWind').text('Wind: ' + weatherData.current.wind_speed);
     $('#currentHumidity').text('Humidity: ' + weatherData.current.humidity);
     $('#currentUVI').text('UV Index: ').append('<span class="uvSpan">' + weatherData.current.uvi + '</span>');
