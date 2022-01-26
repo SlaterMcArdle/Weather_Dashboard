@@ -41,7 +41,7 @@ function parseWeather(weatherData, city) {
     $('#currentTemp').text('Temp: ' + convertTempToFahrenheit(weatherData.current.temp) + String.fromCharCode(176) + 'F');
     $('#currentWind').text('Wind: ' + weatherData.current.wind_speed);
     $('#currentHumidity').text('Humidity: ' + weatherData.current.humidity);
-    $('#currentUVI').text('UV Index: ').append('<span class="uvSpan">' + weatherData.current.uvi + '</span>');
+    $('#currentUVI').text('UV Index: ').append(createUVSpan(weatherData.current.uvi));
     // LOop through the 5 day future forecast and populate the weather cards
     for (let i = 1; i <= 5; i++) {
         $('#' + i + 'DayDate').text(new Date(weatherData.daily[i].dt*1000).toLocaleDateString("en-US"));
@@ -50,6 +50,18 @@ function parseWeather(weatherData, city) {
         $('#' + i + 'DayWind').text('Wind: ' + weatherData.daily[i].wind_speed + ' MPH');
         $('#' + i + 'DayHumidity').text('Humidity: ' + weatherData.daily[i].humidity + '%');
     }
+}
+function createUVSpan(uvIndex) {
+    let uvSpan = $('<span></span>').addClass('uvSpan');
+    if (uvIndex <= 2) {
+        uvSpan.addClass('uvMild');
+    } else if (uvIndex <= 5) {
+        uvSpan.addClass('uvModerate');
+    } else {
+        uvSpan.addClass('uvSevere');
+    }
+    uvSpan.text(uvIndex);
+    return uvSpan;
 }
 // Pull the recent searches from local storage
 function getRecentSearches() {
@@ -99,10 +111,12 @@ $('#search').on('click', function(e) {
     getWeather($('#cityInput').val(), false);
 })
 
-// Add an event listener for searching with a recent search button
-$('.recentSearch').on('click', function(e) {
+// Add an event listener for searching with a recent search button.
+// Attach it to the container so we can dynamically generate buttons and keep the listener.
+$('#recentSearches').on('click', function(e) {
     // prevent page reload
     e.preventDefault();
+    console.log(e.target.value);
     // get the weather
     getWeather(e.target.value, true);
 })
