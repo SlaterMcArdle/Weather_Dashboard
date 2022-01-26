@@ -51,6 +51,7 @@ function parseWeather(weatherData, city) {
         $('#' + i + 'DayHumidity').text('Humidity: ' + weatherData.daily[i].humidity + '%');
     }
 }
+// Create a span to house the UV index. Assign it a color class based on the UV severity
 function createUVSpan(uvIndex) {
     let uvSpan = $('<span></span>').addClass('uvSpan');
     if (uvIndex <= 2) {
